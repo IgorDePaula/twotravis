@@ -1,0 +1,12 @@
+<phpunit 
+    bootstrap="./tests/Bootstrap.php"
+    colors="true"
+    backupGlobals="false"
+>
+    <testsuites>
+        <testsuite name="Menir">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+
+</phpunit>
