@@ -21,8 +21,7 @@
         "behat/mink-goutte-driver": "*",
         "behat/mink-selenium2-driver": "*",
         "behat/mink-sahi-driver": "*",
-        "mah/menir":"dev-master"
-       
+        "mah/menir":"dev-master"       
     }
   
 }

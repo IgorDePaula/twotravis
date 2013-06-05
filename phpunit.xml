@@ -6,7 +6,7 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          syntaxCheck="false"
-         processIsolation="false"
+         processIsolation="true"
          colors="true"
 >
     <testsuites>
