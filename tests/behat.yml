@@ -1,7 +1,7 @@
 default:
   extensions:
     Behat\MinkExtension\Extension:
-      base_url: 'http://myapphome.adminweb.com.br/'
+      base_url: "http://myapphome.adminweb.com.br/"
       goutte: ~
       selenium2: ~
       browser_name: 'firefox'
