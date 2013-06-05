@@ -111,7 +111,7 @@ class Clientes {
     }
 
     public function setIdclientes($idclientes) {
-        $this->idclientes = $idclientes;
+        $this->idclientes = (int) $idclientes;
     }
 
     public function getCliente() {
@@ -119,7 +119,7 @@ class Clientes {
     }
 
     public function setCliente($cliente) {
-        $this->cliente = $cliente;
+        $this->cliente = (string) $cliente;
     }
 
     public function getCnpj() {
@@ -127,7 +127,7 @@ class Clientes {
     }
 
     public function setCnpj($cnpj) {
-        $this->cnpj = $cnpj;
+        $this->cnpj = (int) $cnpj;
     }
 
     public function getEndereco() {
@@ -135,7 +135,7 @@ class Clientes {
     }
 
     public function setEndereco($endereco) {
-        $this->endereco = $endereco;
+        $this->endereco = (string) $endereco;
     }
 
     public function getBairro() {
@@ -159,7 +159,7 @@ class Clientes {
     }
 
     public function setEmail($email) {
-        $this->email = $email;
+        $this->email = (string) $email;
     }
 
     public function getTelefone() {
@@ -167,7 +167,7 @@ class Clientes {
     }
 
     public function setTelefone($telefone) {
-        $this->telefone = $telefone;
+        $this->telefone = (string) $telefone;
     }
 
     public function getSenha() {
@@ -175,7 +175,7 @@ class Clientes {
     }
 
     public function setSenha($senha) {
-        $this->senha = $senha;
+        $this->senha = (string) $senha;
     }
 
     public function getToken() {
@@ -183,7 +183,7 @@ class Clientes {
     }
 
     public function setToken($token) {
-        $this->token = $token;
+        $this->token = (string) $token;
     }
 
     public function getEstado() {
@@ -191,7 +191,7 @@ class Clientes {
     }
 
     public function setEstado($estado) {
-        $this->estado = $estado;
+        $this->estado = (string) $estado;
     }
 
     public function getAll() {
