@@ -11,7 +11,8 @@
 >
     <testsuites>
         <testsuite name="Menir">
-            <directory>./tests</directory>
+            <directory>tests</directory>
+                     <file>tests/IndexControllerTest.php</file>
         </testsuite>
     </testsuites>
 
