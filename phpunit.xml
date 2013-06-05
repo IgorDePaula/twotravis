@@ -1,7 +1,13 @@
 <phpunit 
     bootstrap="./tests/Bootstrap.php"
-    colors="true"
     backupGlobals="false"
+         backupStaticAttributes="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         syntaxCheck="false"
+         processIsolation="false"
+         colors="true"
 >
     <testsuites>
         <testsuite name="Menir">
