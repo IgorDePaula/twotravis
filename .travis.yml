@@ -10,3 +10,4 @@ before_script:
 script:
   - cd tests
   - ../vendor/behat/behat/bin/behat
+  - phpunit
