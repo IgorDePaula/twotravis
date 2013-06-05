@@ -8,6 +8,6 @@ before_script:
   - composer install
 
 script:
+  - phpunit
   - cd tests
   - ../vendor/behat/behat/bin/behat
-  - phpunit
