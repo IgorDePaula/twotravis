@@ -35,12 +35,7 @@ class ClienteTest extends PHPUnit_Framework_TestCase{
         }
 
         $connectionOptions = array(
-            'driver' => 'pdo_mysql',
-            'host' => 'localhost',
-            'port' => '3306',
-            'user' => 'root',
-            'password' => 'Eya.cheble190',
-            'dbname' => 'myapphome'
+         
         );
 
         $this->entityManager = EntityManager::create($connectionOptions, $config);
@@ -66,6 +61,14 @@ class ClienteTest extends PHPUnit_Framework_TestCase{
     {
         $this->object->setIdcategorias(1);
         $this->assertEquals('integer',gettype($this->object->getIdcategorias()));
+    }
+    public function testSQLServer()
+    {
+        if(!extension_loaded('pdo_sqlsrv'))
+        {
+            $this->markTestSkipped("Extensao do SQL SERVER nao carregada");
+        }
+        $this->assertTrue(true);
     }
 
 }
