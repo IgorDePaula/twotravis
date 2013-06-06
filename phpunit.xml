@@ -8,6 +8,7 @@
          syntaxCheck="false"
          processIsolation="true"
          colors="true"
+         verbose="true"
 >
     <testsuites>
         <testsuite name="Menir">
