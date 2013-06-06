@@ -16,3 +16,5 @@ script:
   - phpunit
   - cd tests
   - ../vendor/behat/behat/bin/behat
+  - cd ..
+  - phploc
