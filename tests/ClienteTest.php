@@ -35,7 +35,12 @@ class ClienteTest extends PHPUnit_Framework_TestCase{
         }
 
         $connectionOptions = array(
-         
+            'driver' => 'pdo_mysql',
+            'host' => 'localhost',
+            'port' => '3306',
+            'user' => 'root',
+            'password' => '',
+            'dbname' => 'myapphome'
         );
 
         $this->entityManager = EntityManager::create($connectionOptions, $config);

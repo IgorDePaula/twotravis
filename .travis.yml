@@ -3,7 +3,12 @@ language: php
 php:
   - 5.3
 
+services: mysql
+
+
+
 before_script:
+  - mysql -e 'create database myapphome;'
   - composer self-update
   - composer install
 
