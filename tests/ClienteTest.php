@@ -67,14 +67,7 @@ class ClienteTest extends PHPUnit_Framework_TestCase{
         $this->object->setIdcategorias(1);
         $this->assertEquals('integer',gettype($this->object->getIdcategorias()));
     }
-    public function testSQLServer()
-    {
-        if(!extension_loaded('pdo_sqlsrv'))
-        {
-            $this->markTestSkipped("Extensao do SQL SERVER nao carregada");
-        }
-        $this->assertTrue(true);
-    }
+  
 
 }
 
