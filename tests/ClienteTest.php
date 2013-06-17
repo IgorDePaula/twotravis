@@ -12,12 +12,9 @@ class ClienteTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $applicationMode = "development";
-        if ($applicationMode == "development")
-        {
+        if ($applicationMode == "development") {
             $cache = new \Doctrine\Common\Cache\ArrayCache;
-        }
-        else
-        {
+        } else {
             $cache = new \Doctrine\Common\Cache\ApcCache;
         }
 
@@ -31,12 +28,9 @@ class ClienteTest extends PHPUnit_Framework_TestCase
         $config->setProxyDir('/path/to/myproject/lib/MyProject/Proxies');
         $config->setProxyNamespace('MyProject\Proxies');
 
-        if ($applicationMode == "development")
-        {
+        if ($applicationMode == "development") {
             $config->setAutoGenerateProxyClasses(true);
-        }
-        else
-        {
+        } else {
             $config->setAutoGenerateProxyClasses(false);
         }
 
