@@ -23,7 +23,7 @@
         </exec>
     </target>
     <target name="phploc" description="Run PHP copy-paste detector">
-        <exec executable="phploc" failonerror="true">
+        <exec executable="vendor/phploc/phploc/composer/bin/phploc" failonerror="true">
             <arg value="-p"/>
             <arg value="./tests"/>
         </exec>
