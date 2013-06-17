@@ -8,10 +8,10 @@ use \PHPUnit_Framework_TestCase;
 
 
 
-class ClienteTest extends PHPUnit_Framework_TestCase{
-
-    private $entityManager = null;
-    private $object;
+class ClienteTest extends PHPUnit_Framework_TestCase
+{    
+    private $_object;
+    
     public function setUp() {
         $applicationMode = "development";
         if ($applicationMode == "development") {
@@ -43,29 +43,32 @@ class ClienteTest extends PHPUnit_Framework_TestCase{
             'dbname' => 'myapphome'
         );
 
-        $this->entityManager = EntityManager::create($connectionOptions, $config);
-        $this->object = new Categorias($this->entityManager);
+        $entityManager = EntityManager::create($connectionOptions, $config);
+        $this->_object = new Categorias($entityManager);
     }
     
     public function testSetGetCategoryName()
     {
-        $this->object->setCategoria('Massas');
-        $this->assertEquals('Massas',$this->object->getCategoria());
+        $this->_object->setCategoria('Massas');
+        $this->assertEquals('Massas', $this->_object->getCategoria());
     }
     public function testSetGetCategoryId()
     {
-        $this->object->setIdcategorias(1);
-        $this->assertEquals(1,$this->object->getIdcategorias());
+        $this->_object->setIdcategorias(1);
+        $this->assertEquals(1, $this->_object->getIdcategorias());
     }
     public function testSetGetGetTypeCategoryName()
     {
-        $this->object->setCategoria('Massas');
-        $this->assertEquals('string',gettype($this->object->getCategoria()));
+        $this->_object->setCategoria('Massas');
+        $this->assertEquals('string', gettype($this->_object->getCategoria()));
     }
     public function testSetGetGetTypeCategoryId()
     {
-        $this->object->setIdcategorias(1);
-        $this->assertEquals('integer',gettype($this->object->getIdcategorias()));
+        $this->_object->setIdcategorias(1);
+        $this->assertEquals(
+            'integer', 
+            gettype($this->_object->getIdcategorias())
+        );
     }
      
 
