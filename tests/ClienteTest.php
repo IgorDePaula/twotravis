@@ -4,33 +4,39 @@ use Doctrine\ORM\EntityManager,
     Doctrine\ORM\Configuration;
 use API\Entity\Categorias;
 use \PHPUnit_Framework_TestCase;
-// ...
-
-
 
 class ClienteTest extends PHPUnit_Framework_TestCase
 {    
     private $_object;
     
-    public function setUp() {
+    public function setUp()
+    {
         $applicationMode = "development";
-        if ($applicationMode == "development") {
+        if ($applicationMode == "development")
+        {
             $cache = new \Doctrine\Common\Cache\ArrayCache;
-        } else {
+        }
+        else
+        {
             $cache = new \Doctrine\Common\Cache\ApcCache;
         }
 
         $config = new Configuration;
         $config->setMetadataCacheImpl($cache);
-        $driverImpl = $config->newDefaultAnnotationDriver('../module/API/src/API/Entity');
+        $driverImpl = $config->newDefaultAnnotationDriver(
+            '../module/API/src/API/Entity'
+        );
         $config->setMetadataDriverImpl($driverImpl);
         $config->setQueryCacheImpl($cache);
         $config->setProxyDir('/path/to/myproject/lib/MyProject/Proxies');
         $config->setProxyNamespace('MyProject\Proxies');
 
-        if ($applicationMode == "development") {
+        if ($applicationMode == "development")
+        {
             $config->setAutoGenerateProxyClasses(true);
-        } else {
+        }
+        else
+        {
             $config->setAutoGenerateProxyClasses(false);
         }
 
@@ -73,5 +79,3 @@ class ClienteTest extends PHPUnit_Framework_TestCase
      
 
 }
-
-?>

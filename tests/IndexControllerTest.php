@@ -11,16 +11,19 @@ class IndexControllerTest extends PHPUnit_Framework_TestCase
 {
     const API_VERSION = '0.0.1';
 
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->layout('/layout/pagina.phtml');
         return new ViewModel();
     }
 
-    public function demoAction() {
+    public function demoAction()
+    {
         return new ViewModel();
     }
 
-    public function testApiVersion() {
+    public function testApiVersion()
+    {
         $data = array();
 
         $data['version'] = self::API_VERSION;
@@ -28,7 +31,8 @@ class IndexControllerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('{"version":"0.0.1"}', $jm->serialize());
     }
 
-    public function testApiData() {
+    public function testApiData()
+    {
         $data = array();
 
         $data[] = array(
@@ -52,5 +56,3 @@ class IndexControllerTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>
