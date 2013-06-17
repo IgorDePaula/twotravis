@@ -21,4 +21,4 @@ script:
   - cd tests
   - ../vendor/behat/behat/bin/behat
   - cd ..
-  - vendor/phploc/phploc/composer/bin/phplocphploc --progress 
+  - vendor/phploc/phploc/composer/bin/phploc --progress 
