@@ -1,0 +1,63 @@
+<project basedir="." name="myapp">
+    <target name="build" depends="phpcs,phpmd,phpcpd,phpunit,phploc,behat"/>
+
+    <target name="phpcs" description="Run PHP Code Sniffer">
+        <exec executable="phpcs" failonerror="true">
+            <arg value="--standard=Zend"/>
+            <arg value="./tests"/>
+            <arg value="public/css"/>
+        </exec>
+    </target>
+
+    <target name="phpmd" description="Run PHP Mess Detector">
+        <exec executable="phpmd" failonerror="true">
+            <arg value="./tests"/>
+            <arg value="text"/>
+            <arg value="codesize,unusedcode"/>
+        </exec>
+    </target>
+
+    <target name="phpcpd" description="Run PHP copy-paste detector">
+        <exec executable="phpcpd" failonerror="true">
+            <arg value="./tests"/>
+        </exec>
+    </target>
+    <target name="phploc" description="Run PHP copy-paste detector">
+        <exec executable="phploc" failonerror="true">
+            <arg value="./tests"/>
+        </exec>
+    </target>
+    <target name="phpunit" description="Run PHP Unit">
+        <exec executable="phpunit" failonerror="true">
+            <arg  value="--bootstrap"/>
+            <arg  value="tests/Bootstrap.php"/>
+        
+            <arg value="./tests"/>
+                   
+        </exec>
+    </target>
+    <target name="behat" description="Run PHP Unit">
+        <exec executable="vendor/behat/behat/bin/behat" failonerror="true">
+            <arg  value="-c"/>
+            <arg  value="tests/behat.yml"/>
+            <arg  value="--lang"/>
+            <arg  value="pt-BR"/>
+        
+          
+                   
+        </exec>
+    </target>
+    <target name="phpdoc" description="Run PHPDoc">
+        <exec executable="phpdoc" failonerror="true">
+            <arg value="-d"/>
+            <arg value="./tests"/>
+            <arg value="-t"/>
+            <arg value="docs"/>
+            <arg value="-i"/>
+            <arg value="./tests"/>
+            <arg value="--force"/>
+            <arg value="--template"/>
+            <arg value="checkstyle"/>
+        </exec>
+    </target>
+</project>
