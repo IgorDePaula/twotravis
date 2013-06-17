@@ -24,6 +24,7 @@
     </target>
     <target name="phploc" description="Run PHP copy-paste detector">
         <exec executable="phploc" failonerror="true">
+            <arg value="-p"/>
             <arg value="./tests"/>
         </exec>
     </target>
