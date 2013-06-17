@@ -23,6 +23,7 @@
         "behat/mink-sahi-driver": "*",
         "mah/menir":"dev-master",
         "firephp/firephp-core":"dev-master",
+        "zetacomponents/console-tools":"dev-master",
         "phploc/phploc":"dev-master"
     }
   
