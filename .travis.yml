@@ -12,9 +12,7 @@ before_script:
   - mysql -e 'create database myapphome;'
   - composer self-update
   - composer install
-  - pear upgrade pear
-  - pear channel-discover pear.phpunit.de
-  - pear install phpunit/phploc
+
 
 script:
   - phpunit
