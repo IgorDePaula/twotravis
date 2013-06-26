@@ -7,11 +7,7 @@
         <mkdir dir="${basedir}/build/logs"/>
         <mkdir dir="${basedir}/build/pdepend"/>
     </target><!-- Run unit tests and generate junit.xml and clover.xml -->
-    <target name="dirchange" description="Composer update dependencies">
-        <exec executable="/bin/bash">
-            <arg value="cd ${basedir}" />
-        </exec>
-    </target>
+   
     <target name="phpcomposer" description="Composer update dependencies">
         <exec executable="php">          
             <arg value="composer.phar install" />
@@ -65,5 +61,5 @@
             <arg line="--log    ${basedir}/build/logs               --source ${basedir}/Object               --output ${basedir}/build/code-browser"/>
         </exec>
     </target>
-    <target name="build" depends="clean,dirchange,phpcomposer,parallelTasks,phpunit,phpcb"/>
+    <target name="build" depends="clean,phpcomposer,parallelTasks,phpunit,phpcb"/>
 </project>
