@@ -9,8 +9,8 @@
     </target><!-- Run unit tests and generate junit.xml and clover.xml -->
    
     <target name="phpcomposer" description="Composer update dependencies">
-        <exec executable="php">          
-            <arg value="php composer.phar install" />
+        <exec executable="composer">          
+            <arg value="composer install" />
         </exec>
     </target>    
     <target name="phpunit">
