@@ -66,5 +66,5 @@
             <arg line="--log    ${basedir}/build/logs               --source ${basedir}/Object               --output ${basedir}/build/code-browser"/>
         </exec>
     </target>
-    <target name="build" depends="clean,getcomposer,parallelTasks,phpunit,phpcb"/>
+    <target name="build" depends="clean,dirchange,phpcomposer,parallelTasks,phpunit,phpcb"/>
 </project>
