@@ -16,7 +16,7 @@
     </target>
     <target name="phpcomposer2" description="Composer update dependencies">
         <exec executable="php">
-            <arg value="php ${basedir}/composer.phar install" />
+            <arg value="${basedir}/composer.phar install" />
         </exec>
     </target>
     <target name="phpunit">
