@@ -10,7 +10,7 @@
    
     <target name="phpcomposer" description="Composer update dependencies">
         <exec executable="php">          
-            <arg value="composer.phar install" />
+            <arg value="${basedir}/composer.phar install" />
         </exec>
     </target>    
     <target name="phpunit">
