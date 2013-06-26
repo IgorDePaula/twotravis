@@ -9,8 +9,7 @@
     </target><!-- Run unit tests and generate junit.xml and clover.xml -->
     <target name="dirchange" description="Composer update dependencies">
         <exec executable="/bin/bash">
-            <arg value="cd ${basedir}/workspace" />
-            <arg value="curl -s https://getcomposer.org/installer | php" />
+            <arg value="cd ${basedir}" />
         </exec>
     </target>
     <target name="phpcomposer" description="Composer update dependencies">
