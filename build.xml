@@ -8,11 +8,12 @@
         <mkdir dir="${basedir}/build/pdepend"/>
     </target><!-- Run unit tests and generate junit.xml and clover.xml -->
    
-    <target name="phpcomposer" description="Composer update dependencies">
-        <exec executable="composer">          
-            <arg value="composer install" />
-        </exec>
-    </target>    
+   <target name="phpcomposer" description="Composer update dependencies">
+    <exec executable="/bin/bash">
+        <arg value="-c" />
+        <arg value="curl -s https://getcomposer.org/installer | php" />
+    </exec>
+</target>
     <target name="phpunit">
         <exec executable="phpunit" failonerror="true"/>
     </target><!-- Run pdepend, phpmd, phpcpd, and phpcs in parallel -->
