@@ -19,10 +19,8 @@
         </exec>
     </target>
     <target name="phpunit">
-        <exec executable="phpunit" failonerror="true">
-            <arg line=" --log-junit '${basedir}/build/logs/junit.xml'  --coverage-html '${basedir}/build/coverage/'  --coverage-clover '${basedir}/build/logs/clover.xml' ./tests"/>
-         
-        </exec>
+        <exec executable="phpunit" failonerror="true"/>
+           
     </target><!-- Run pdepend, phpmd, phpcpd, and phpcs in parallel -->
     <target name="parallelTasks">
         <parallel>
@@ -55,7 +53,7 @@
     </target><!-- Generate checkstyle.xml -->
     <target name="phpcs">
         <exec executable="phpcs" output="/dev/null">
-            <arg line="--report=checkstyle               --report-file=${basedir}/build/logs/checkstyle.xml  --standard=Zend ./tests"/>
+            <arg line="--report=checkstyle   --report-file=${basedir}/build/logs/checkstyle.xml  --standard=Zend ./tests"/>
         </exec>
     </target><!-- Generate API documentation -->    
     <target name="build" depends="clean,phpcomposer,parallelTasks,phpunit"/>
