@@ -20,7 +20,7 @@
     </target>
     <target name="phpunit">
         <exec executable="phpunit" failonerror="true">
-            <arg line=" --log-junit 'reports/unitreport.xml'   --coverage-html '${basedir}/build/coverage/'  --coverage-clover '${basedir}/build/logs/clover.xml' ./tests"/>
+            <arg line=" --log-junit '${basedir}/build/logs/junit.xml'  --coverage-html '${basedir}/build/coverage/'  --coverage-clover '${basedir}/build/logs/clover.xml' ./tests"/>
         </exec>
     </target><!-- Run pdepend, phpmd, phpcpd, and phpcs in parallel -->
     <target name="parallelTasks">
@@ -34,7 +34,7 @@
     </target><!-- Generate jdepend.xml and software metrics charts -->
     <target name="pdepend">
         <exec executable="pdepend">
-            <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml     --jdepend-chart=${basedir}/build/pdepend/dependencies.svg    --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg ./tests"/>
+            <arg line=" --jdepend-xml=${basedir}/build/logs/jdepend.xml --jdepend-chart=${basedir}/build/pdepend/dependencies.svg  --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg ./tests"/>
         </exec>
     </target><!-- Generate pmd.xml -->
     <target name="phpmd">
