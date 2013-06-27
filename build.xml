@@ -36,7 +36,7 @@
     </target><!-- Generate pmd.xml -->
     <target name="phpmd">
         <exec executable="phpmd">
-            <arg line=" xml codesize,design,naming,unusedcode --reportfile ${basedir}/build/logs/pmd.xml tests"/>
+            <arg line="tests xml codesize,design,naming,unusedcode --reportfile ${basedir}/build/logs/pmd.xml tests"/>
         </exec>
     </target><!-- Generate pmd-cpd.xml -->
     <target name="phpcpd">
