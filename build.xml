@@ -37,7 +37,7 @@
     </target><!-- Generate pmd.xml -->
     <target name="phpmd">
         <exec executable="phpmd">
-            <arg line="Object xml codesize,design,naming,unusedcode --reportfile ${basedir}/build/logs/pmd.xml"/>
+            <arg line=" xml codesize,design,naming,unusedcode --reportfile ${basedir}/build/logs/pmd.xml"/>
         </exec>
     </target><!-- Generate pmd-cpd.xml -->
     <target name="phpcpd">
@@ -47,7 +47,7 @@
     </target><!-- Generate phploc.csv -->
     <target name="phploc">
         <exec executable="phploc">
-            <arg line="--log-csv ${basedir}/build/logs/phploc.csv Object"/>
+            <arg line="--log-csv ${basedir}/build/logs/phploc.csv"/>
         </exec>
     </target><!-- Generate checkstyle.xml -->
     <target name="phpcs">
@@ -57,7 +57,7 @@
     </target><!-- Generate API documentation -->
     <target name="phpcb">
         <exec executable="phpcb">
-            <arg line="--log    ${basedir}/build/logs               --source ${basedir}/Object               --output ${basedir}/build/code-browser"/>
+            <arg line="--log    ${basedir}/build/logs               --source ${basedir}/               --output ${basedir}/build/code-browser"/>
         </exec>
     </target>
     <target name="build" depends="clean,phpcomposer,parallelTasks,phpunit,phpcb"/>
