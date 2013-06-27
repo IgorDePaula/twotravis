@@ -20,7 +20,7 @@
     </target>
     <target name="phpunit">
         <exec executable="phpunit" failonerror="true">
-            <arg line=" --log-junit '${basedir}/build/logs/junit.xml'  --coverage-html '${basedir}/build/coverage/'  --coverage-clover '${basedir}/build/logs/clover.xml' --bootstrap='tests/Boostrap.php' ./tests"/>
+            <arg line=" --log-junit '${basedir}/build/logs/junit.xml'  --coverage-html '${basedir}/build/coverage/'  --coverage-clover '${basedir}/build/logs/clover.xml' ./tests"/>
             <arg value="--bootstrap='./tests/Bootstrap.php'"/>
         </exec>
     </target><!-- Run pdepend, phpmd, phpcpd, and phpcs in parallel -->
