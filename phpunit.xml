@@ -1,0 +1,19 @@
+<phpunit 
+    bootstrap="./tests/Bootstrap.php"
+    backupGlobals="false"
+         backupStaticAttributes="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         syntaxCheck="false"
+         processIsolation="true"
+         colors="true"
+         verbose="true">
+    <testsuites>
+        <testsuite name="Menir">
+            <directory>./tests</directory>
+                    
+        </testsuite>
+    </testsuites>
+
+</phpunit>
