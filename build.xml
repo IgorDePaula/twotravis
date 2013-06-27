@@ -46,7 +46,7 @@
     </target><!-- Generate phploc.csv -->
     <target name="phploc">
         <exec executable="phploc">
-            <arg line="--log-csv ${basedir}/build/logs/phploc.csv"/>
+            <arg line="--log-csv ${basedir}/build/logs/phploc.csv ./tests"/>
         </exec>
     </target><!-- Generate checkstyle.xml -->
     <target name="phpcs">
