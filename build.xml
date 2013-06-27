@@ -8,18 +8,15 @@
         <mkdir dir="${basedir}/build/pdepend"/>
     </target><!-- Run unit tests and generate junit.xml and clover.xml -->
    
-    <target name="phpcomposer" description="Composer update dependencies">
-        <exec executable="/bin/bash">
-            <arg value="-c" />
-            <arg value="curl -s https://getcomposer.org/installer | php" />
+    <target name="phpcomposer" description="Installing dependencies">
+        <exec executable="wget" failonerror="true">
+            <arg value="-nc" />
+            <arg value="http://getcomposer.org/composer.phar" />
         </exec>
-         <exec executable="php">
-            <arg value="composer.phar install" />
-        </exec>
-    </target>
-    <target name="phpcomposer2" description="Composer update dependencies">
-        <exec executable="php">
-            <arg value="${basedir}/composer.phar install" />
+        <exec executable="php" failonerror="true">
+            <arg value="composer.phar" />
+            <arg value="install" />
+           
         </exec>
     </target>
     <target name="phpunit">
@@ -70,5 +67,5 @@
             <arg line="--log    ${basedir}/build/logs               --source ${basedir}/Object               --output ${basedir}/build/code-browser"/>
         </exec>
     </target>
-    <target name="build" depends="clean,phpcomposer,phpcomposer2,parallelTasks,phpunit,phpcb"/>
+    <target name="build" depends="clean,phpcomposer,parallelTasks,phpunit,phpcb"/>
 </project>
