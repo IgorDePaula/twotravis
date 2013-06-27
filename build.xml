@@ -18,10 +18,11 @@
             <arg value="install" />           
         </exec>
     </target>
-    <target name="phpunit">
-        <exec executable="phpunit" failonerror="true">
-            <arg line=" --log-junit '${basedir}/build/logs/junit.xml'  --coverage-html '${basedir}/build/coverage/'  --coverage-clover '${basedir}/build/logs/clover.xml' ./tests"/>
-        </exec>
+    <target name="phpunit" description="Run unit tests with PHPUnit">
+         <exec command="phpunit --configuration=${basedir}/phpunit.xml
+        --log-junit ${basedir}/build/logs/junit.xml
+        --coverage-clover ${basedir}/build/logs/clover.xml
+        --coverage-html ${basedir}/build/coverage"/>
     </target><!-- Run pdepend, phpmd, phpcpd, and phpcs in parallel -->
     <target name="parallelTasks">
         <parallel>
