@@ -1,14 +1,16 @@
-<project name="php-object-freezer" default="build" basedir=".">
-    <target name="clean"><!-- Clean up -->
-        <delete dir="build"/><!-- Create build directories -->
-        <mkdir dir="${basedir}/build/api"/>         
-        <mkdir dir="${basedir}/build/code-browser"/>
-        <mkdir dir="${basedir}/build/coverage"/>
-        <mkdir dir="${basedir}/build/logs"/>
-        <mkdir dir="${basedir}/build/pdepend"/>
-    </target><!-- Run unit ./tests and generate junit.xml and clover.xml -->
-   
-    <target name="phpcomposer" description="Installing dependencies">
+<project name="name-of-project" default="build">
+    <property name="basedir" value="." />
+    <target name="build"
+            depends="prepare,phpconposer,phploc,pdepend,phpmd,phpcs,phpcpd,phpdoc,phpunit,phpcb"/>
+ 
+    <target name="clean" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build/api"/>
+        <delete dir="${basedir}/build/code-browser"/>
+        <delete dir="${basedir}/build/coverage"/>
+        <delete dir="${basedir}/build/logs"/>
+        <delete dir="${basedir}/build/pdepend"/>
+    </target>
+  <target name="phpcomposer" description="Installing dependencies">
         <exec executable="wget" failonerror="true">
             <arg value="-nc" />
             <arg value="http://getcomposer.org/composer.phar" />
@@ -18,45 +20,110 @@
             <arg value="install" />           
         </exec>
     </target>
-    <target name="phpunit" description="Run unit tests with PHPUnit">
-         <exec command="phpunit --configuration=${basedir}/phpunit.xml
+    <target name="prepare" depends="clean"
+            description="Prepare for build">
+        <echo msg="${basedir}" />
+        <mkdir dir="${basedir}/build/api"/>
+        <mkdir dir="${basedir}/build/code-browser"/>
+        <mkdir dir="${basedir}/build/coverage"/>
+        <mkdir dir="${basedir}/build/logs"/>
+        <mkdir dir="${basedir}/build/pdepend"/>
+    </target>
+ 
+    <target name="lint">
+        <phplint>
+            <fileset dir="${basedir}">
+                <include name="**/*.php" />
+                <exclude name="**/tests/**" />
+            </fileset>
+        </phplint>
+    </target>
+ 
+    <target name="phploc" description="Measure project size using PHPLOC">
+        <exec executable="phploc">
+            <arg value="--log-csv" />
+            <arg value="${basedir}/build/logs/phploc.csv" />
+            <arg value="--exclude"/>
+            <arg path="${basedir}/tests" />
+            <arg value="--suffixes"/>
+            <arg value="php" />
+            <arg path="${basedir}" />
+        </exec>
+    </target>
+ 
+    <target name="pdepend">
+        <phpdepend>
+            <fileset dir="${basedir}">
+                <include name="**/*.php" />
+                <exclude name="**/tests/**" />
+            </fileset>
+            <logger type="jdepend-xml" outfile="${basedir}/build/logs/jdepend.xml"/>
+            <logger type="jdepend-chart" outfile="${basedir}/build/pdepend/dependencies.svg"/>
+            <logger type="overview-pyramid" outfile="${basedir}/build/pdepend/overview-pyramid.svg"/>
+        </phpdepend>
+    </target>
+ 
+    <target name="phpmd"
+            description="Generate pmd.xml using PHPMD">
+        <phpmd rulesets="codesize,unusedcode,naming,design">
+            <fileset dir="${basedir}">
+                <include name="**/*.php" />
+                <exclude name="**/tests/**" />
+            </fileset>
+            <formatter type="xml" outfile="${basedir}/build/logs/pmd.xml"/>
+        </phpmd>
+    </target>
+ 
+    <target name="phpcs">
+        <phpcodesniffer standard="Zend" allowedFileExtensions="php">
+            <fileset dir="${basedir}">
+                <include name="**/*.php" />
+                <exclude name="**/tests/**" />
+            </fileset>
+            <formatter type="default" usefile="false"  />
+            <formatter type="checkstyle" outfile="${basedir}/build/logs/checkstyle.xml" />
+        </phpcodesniffer>
+    </target>
+ 
+    <target name="phpcpd">
+        <phpcpd>
+            <fileset dir="${basedir}">
+                <include name="**/*.php" />
+            </fileset>
+            <formatter type="pmd" outfile="${basedir}/build/logs/pmd-cpd.xml"/>
+        </phpcpd>
+    </target>
+ 
+    <target name="phpdoc" description="AutoGenerate php docs">
+        <phpdoc title="My API Docs"
+                sourcecode="yes"
+                destdir="${basedir}/build/api"
+                output="HTML:Smarty:PHP">
+            <fileset dir="${basedir}">
+                <include name="**/*.php" />
+                <exclude name="**/tests/**" />
+            </fileset>
+        </phpdoc>
+    </target>
+ 
+     <target name="phpunit" description="Run unit tests with PHPUnit">
+         <exec command="phpunit --configuration=${basedir}/tests/phpunit.xml
         --log-junit ${basedir}/build/logs/junit.xml
         --coverage-clover ${basedir}/build/logs/clover.xml
         --coverage-html ${basedir}/build/coverage"/>
-    </target><!-- Run pdepend, phpmd, phpcpd, and phpcs in parallel -->
-    <target name="parallelTasks">
-        <parallel>
-            <antcall target="pdepend"/>
-            <antcall target="phpmd"/>
-            <antcall target="phpcpd"/>
-            <antcall target="phploc"/>
-            <antcall target="phpcs"/>
-        </parallel>
-    </target><!-- Generate jdepend.xml and software metrics charts -->
-    <target name="pdepend">
-        <exec executable="pdepend">
-            <arg line=" --jdepend-xml=${basedir}/build/logs/jdepend.xml --jdepend-chart=${basedir}/build/pdepend/dependencies.svg  --overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg ./tests"/>
+    </target>
+ 
+    <target name="phpcb"
+            description="Aggregate tool output with PHP_CodeBrowser">
+        <exec executable="phpcb">
+            <arg value="--log" />
+            <arg path="${basedir}/build/logs" />
+            <arg value="--source" />
+            <arg path="${basedir}/application" />
+            <arg value="--source" />
+            <arg path="${basedir}/library" />
+            <arg value="--output" />
+            <arg path="${basedir}/build/code-browser" />
         </exec>
-    </target><!-- Generate pmd.xml -->
-    <target name="phpmd">
-        <exec executable="phpmd">
-            <arg line="./tests xml codesize,design,naming,unusedcode --reportfile ${basedir}/build/logs/pmd.xml"/>
-        </exec>
-    </target><!-- Generate pmd-cpd.xml -->
-    <target name="phpcpd">
-        <exec executable="phpcpd">
-            <arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml ./tests"/>
-        </exec>
-    </target><!-- Generate phploc.csv -->
-    <target name="phploc">
-        <exec executable="phploc">
-            <arg line="--log-csv ${basedir}/build/logs/phploc.csv ./tests"/>
-        </exec>
-    </target><!-- Generate checkstyle.xml -->
-    <target name="phpcs">
-        <exec executable="phpcs" output="/dev/null">
-            <arg line="--report=checkstyle   --report-file=${basedir}/build/logs/checkstyle.xml  --standard=Zend ./tests"/>
-        </exec>
-    </target><!-- Generate API documentation -->    
-    <target name="build" depends="clean,phpcomposer,parallelTasks,phpunit"/>
+    </target>
 </project>
