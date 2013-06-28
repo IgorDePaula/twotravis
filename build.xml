@@ -1,7 +1,7 @@
 <project name="name-of-project" default="build">
     <property name="basedir" value="." />
     <target name="build"
-            depends="prepare,phpconposer,phploc,pdepend,phpmd,phpcs,phpcpd,phpdoc,phpunit,phpcb"/>
+            depends="prepare,phpcomposer,phploc,pdepend,phpmd,phpcs,phpcpd,phpdoc,phpunit,phpcb"/>
  
     <target name="clean" description="Cleanup build artifacts">
         <delete dir="${basedir}/build/api"/>
